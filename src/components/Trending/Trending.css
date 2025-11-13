@@ -1,0 +1,97 @@
+.newRealeaseMovieListHeader {
+  background: #0A1931; /* Deep Navy */
+  border-bottom: 3px solid #D4AF37; /* Gold border */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+/* Heading Styling */
+.newRealeaseMovieListHeading {
+  color: #D4AF37; /* Gold */
+  font-weight: 700;
+  font-size: 2.2rem;
+  padding: 0 20px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.new-release-section {
+  position: relative;
+  padding: 0 40px;
+  overflow: hidden; /* prevents arrows or cards from overflowing */
+}
+
+/* Scroll container */
+.newRealeaseMovieList {
+  display: flex;
+     gap: 1.2rem;        
+ 
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  scrollbar-width: none;  
+}
+.newRealeaseMovieList::-webkit-scrollbar {
+  display: none;         
+}
+
+
+/* Each card */
+.newRealeaseMovieCard {
+  flex-shrink: 0;
+   
+  width: 180px;
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.newRealeaseMovieCard:hover {
+  transform: scale(1.05);
+}
+
+.newRealeaseMovieposter {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Arrows */
+.scroll-btn {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-btn.left {
+  left: 5px;
+}
+
+.scroll-btn.right {
+  right: 5px;
+}
+
+/* NEW badge */
+.new-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 50px;
+  background-color: #ff3d00;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  z-index: 2;
+}

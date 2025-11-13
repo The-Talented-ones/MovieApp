@@ -1,0 +1,27 @@
+.genre-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* centers items horizontally */
+  align-items: center; /* centers vertically (if there’s height) */
+  flex-wrap: wrap; /* allows multiple rows if needed */
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.genre-card {
+  min-width: 200px;
+  min-height: 150px;
+  background-color:#0A1931;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.genre-card:hover {
+  background-color: #ffc107;
+  color:#0A1931;
+  transform: translateY(-5px);
+}
+
+.section-title {
+  font-size: 1.3rem;
+}

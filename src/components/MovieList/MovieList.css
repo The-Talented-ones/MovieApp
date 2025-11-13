@@ -1,0 +1,185 @@
+/* Movie List Header - Deep Navy & Gold Theme */
+.movie-list-header {
+  background: #0A1931; /* Deep Navy */
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid #D4AF37; /* Gold border */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Heading Styling */
+.movie-list-heading {
+  color: #D4AF37; /* Gold */
+  font-weight: 700;
+  font-size: 2.2rem;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-emoji {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+/* Filter Controls Container */
+.movie-list-fs {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Rating Filter List */
+.movie-filter {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.movie-filter-item {
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 80px;
+}
+
+.movie-filter-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: #ffffff;
+  border-color: #D4AF37;
+}
+
+.movie-filter-item.active {
+  background: rgba(212, 175, 55, 0.15);
+  color: #D4AF37;
+  border-color: #D4AF37;
+  font-weight: 600;
+}
+
+/* Sort Dropdowns */
+.movie-sorting {
+  padding: 0.7rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  min-width: 140px;
+}
+
+.movie-sorting:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #D4AF37;
+}
+
+.movie-sorting:focus {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+}
+
+/* Dropdown options styling */
+.movie-sorting option {
+  background: #0A1931;
+  color: #ffffff;
+  padding: 10px;
+}
+/* Scroll container */
+.movie-cards {
+  display: flex;
+     gap: 1.2rem;       /* 👈 sets space between each movie */
+ 
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  scrollbar-width: none;  /* hide scrollbar (Firefox) */
+}
+
+.movie-cards::-webkit-scrollbar {
+  display: none;          /* hide scrollbar (Chrome/Safari/Edge) */
+}
+/* Responsive Design */
+@media (max-width: 1199.98px) {
+  .movie-list-header {
+    padding: 1.5rem 0;
+  }
+  
+  .movie-list-heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .movie-list-header {
+    text-align: center;
+  }
+  
+  .movie-list-fs {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .movie-list-heading {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .movie-list-heading {
+    font-size: 1.8rem;
+  }
+  
+  .movie-filter {
+    gap: 0.5rem;
+  }
+  
+  .movie-filter-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    min-width: 70px;
+  }
+  
+  .movie-sorting {
+    padding: 0.6rem 1rem;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .movie-list-header {
+    padding: 1rem 0;
+  }
+  
+  .movie-list-heading {
+    font-size: 1.6rem;
+  }
+  
+  .movie-list-fs {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .movie-filter {
+    justify-content: center;
+  }
+  
+  .movie-sorting {
+    width: 100%;
+    max-width: 200px;
+  }
+}

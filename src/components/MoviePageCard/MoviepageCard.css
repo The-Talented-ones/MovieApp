@@ -1,0 +1,125 @@
+/* MoviePageCard.css */
+.movie-card {
+  background: linear-gradient(135deg, #0A1931 0%, #1a2c4d 100%);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.2);
+}
+
+.poster-wrapper {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.05);
+}
+
+.rating {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(212, 175, 55, 0.95);
+  color: #0A1931;
+  padding: 0.4rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-title {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  min-height: 2.8em;
+}
+
+.watch-btn {
+  background: linear-gradient(135deg, #D4AF37, #b8941f);
+  color: #0A1931;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+}
+
+.watch-btn:hover {
+  background: linear-gradient(135deg, #b8941f, #a0821a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .movie-card {
+    padding: 0.75rem;
+  }
+  
+  .movie-poster {
+    height: 250px;
+  }
+  
+  .movie-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .watch-btn {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-poster {
+    height: 220px;
+  }
+  
+  .rating {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .movie-card:hover {
+    transform: translateY(-4px);
+  }
+}

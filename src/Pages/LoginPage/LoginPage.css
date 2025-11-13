@@ -1,0 +1,18 @@
+.login-con {
+  width: 600px;
+  border: 2px solid #0a1931;
+  background: #0a1931;
+}
+.login-btn {
+  width: 200px;
+  font-size: 20px;
+  background: #d4af37;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  color: #0a1931;
+}
+.login-btn:hover{
+    background: rgba(212, 175, 55, 0.3);
+    border:1px solid #D4AF37;
+    color: white;
+}

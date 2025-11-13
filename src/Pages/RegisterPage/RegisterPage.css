@@ -1,0 +1,22 @@
+.reg-con {
+    width: 600px;
+    border: 2px solid #0A1931 ;
+    background: #0A1931 ;
+    
+}
+.reg-btn{
+    width: 200px;
+    font-size: 20px;
+    background: #D4AF37;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    color: #0A1931;
+}
+.reg-btn:hover{
+    background: rgba(212, 175, 55, 0.3);
+    border:1px solid #D4AF37;
+    color: white;
+}
+.form-control{
+    outline: 0;
+}
