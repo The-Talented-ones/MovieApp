@@ -1,17 +1,31 @@
-import React, { useEffect, useState } from "react";
-import _ from 'lodash';
-
+import React, { useEffect, useState, ChangeEvent } from "react";
+import _ from "lodash";
 
 import Fire from "../../assets/fire.png";
 import MovieCards from "./movie-card/MovieCards";
 import "./MovieList.css";
 import FilterGroup from "./FilterGroup";
 
-const MovieList = () => {
-  const [movies, setMovies] = useState([]);
-  const [allMovies, setAllMovies] = useState([]);
-  const [minRating, setMinRating] = useState(0);
-  const [sort, setSort] = useState({
+interface Movie {
+  id: number;
+  title: string;
+  release_date: string;
+  vote_average: number;
+  poster_path: string;
+  overview?: string;
+  original_title?: string;
+}
+
+interface SortState {
+  by: "default" | "release_date" | "vote_average";
+  order: "asc" | "desc";
+}
+
+const MovieList: React.FC = (): JSX.Element => {
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [allMovies, setAllMovies] = useState<Movie[]>([]);
+  const [minRating, setMinRating] = useState<number>(0);
+  const [sort, setSort] = useState<SortState>({
     by: "default",
     order: "asc",
   });
@@ -21,14 +35,12 @@ const MovieList = () => {
     fetchMovies();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (sort.by !== "default") {
-    const sortedMovies =  _.orderBy(movies, [sort.by],[sort.order ])
-    setMovies(sortedMovies);
+      const sortedMovies = _.orderBy(movies, [sort.by], [sort.order]);
+      setMovies(sortedMovies);
     }
-    
-  }, [sort])
-
+  }, [sort, movies]);
 
   const fetchMovies = async () => {
     const response = await fetch(
@@ -39,26 +51,25 @@ const MovieList = () => {
     setAllMovies(data.results);
   };
 
-  const handleFilter = (rate) => {
+  const handleFilter = (rate: number) => {
     setMinRating(rate);
     const filtered = allMovies.filter((movie) => movie.vote_average >= rate);
     setMovies(filtered);
   };
 
-  const handleSort = (e) => {
+  const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setSort((prev) => {
-      return { ...prev, [name]: value };
-    });
-    console.log(sort);
+    setSort((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
     <div>
       <section className="movie-list">
         <header
-          className="movie-list-header px-5 py-2 d-flex align-items-center justify-content-between
- mb-5"
+          className="movie-list-header px-5 py-2 d-flex align-items-center justify-content-between mb-5"
         >
           <h2 className="movie-list-heading d-flex align-items-center">
             Popular
@@ -74,7 +85,6 @@ const MovieList = () => {
 
             <select
               name="by"
-              id=""
               onChange={handleSort}
               value={sort.by}
               className="movie-sorting outline-0 border-0 rounded-3 p-2 mx-2 me-2"
@@ -86,7 +96,6 @@ const MovieList = () => {
 
             <select
               name="order"
-              id=""
               onChange={handleSort}
               value={sort.order}
               className="movie-sorting outline-0 border-0 rounded-3 p-2 mx-2"

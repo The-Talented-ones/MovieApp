@@ -2,40 +2,59 @@ import React, { useEffect, useRef, useState } from "react";
 import GlobalAPI from "../../services/GlobalAPI";
 import { FaChevronRight, FaChevronLeft, FaPlay } from "react-icons/fa";
 import { TiStarFullOutline } from "react-icons/ti";
+import { useNavigate } from "react-router-dom";
 import "./Slider.css";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
 
-type Movie = {
+interface Movie {
   id: number;
   title?: string;
   backdrop_path?: string;
   overview?: string;
   vote_average?: number;
-};
+}
 
-const Slider = () => {
+const Slider = (): JSX.Element => {
   const [trending, setTrending] = useState<Movie[]>([]);
+  const [searchInput, setSearchInput] = useState<string>("");
+  const navigate = useNavigate();
   const elementRef = useRef<HTMLDivElement>(null);
   const screenWidth = window.innerWidth;
 
+  // Fetch trending movies
   useEffect(() => {
+    const getTrending = async (): Promise<void> => {
+      try {
+        const resp = await GlobalAPI.getTrendingMovies();
+        if (resp.data?.results) {
+          setTrending(resp.data.results);
+        }
+      } catch (error) {
+        console.error("Error fetching trending movies:", error);
+      }
+    };
     getTrending();
   }, []);
 
-  const getTrending = () => {
-    GlobalAPI.getTrendingMovies().then((resp: any) => {
-      setTrending(resp.data.results);
-    });
+  // Navigate on search input
+  useEffect(() => {
+    if (searchInput) {
+      navigate(`/search?q=${searchInput}`);
+    }
+  }, [searchInput, navigate]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
   };
 
-  const sliderRight = () => {
+  const sliderRight = (): void => {
     if (elementRef.current) {
       elementRef.current.scrollLeft += screenWidth;
     }
   };
 
-  const sliderLeft = () => {
+  const sliderLeft = (): void => {
     if (elementRef.current) {
       elementRef.current.scrollLeft -= screenWidth;
     }
@@ -53,7 +72,7 @@ const Slider = () => {
           style={{ width: "45px", height: "45px" }}
           onClick={sliderLeft}
         >
-          <FaChevronLeft className="text-white" />
+          <FaChevronLeft size={20} />
         </button>
 
         <button
@@ -61,7 +80,7 @@ const Slider = () => {
           style={{ width: "45px", height: "45px" }}
           onClick={sliderRight}
         >
-          <FaChevronRight className="text-white" />
+          <FaChevronRight size={20} />
         </button>
       </div>
 
@@ -70,13 +89,13 @@ const Slider = () => {
         className="slider-track d-flex overflow-x-auto scroll-smooth"
         ref={elementRef}
       >
-        {trending.map((item) => (
+        {trending.map((item: Movie) => (
           <div
             key={item.id}
             className="movie-banner position-relative flex-shrink-0 w-100"
           >
             <img
-              src={IMAGE_BASE_URL + item.backdrop_path}
+              src={item.backdrop_path ? IMAGE_BASE_URL + item.backdrop_path : "/no-image.png"}
               className="w-100 movie-img"
               alt={item.title || "Trending Movie"}
             />
@@ -86,13 +105,16 @@ const Slider = () => {
               <div className="banner-content">
                 <h2 className="fw-bold">{item.title}</h2>
                 <p className="mt-2 mb-3 fs-6" style={{ maxWidth: "600px" }}>
-                  {item.overview?.slice(0, 220)}...
+                  {item.overview ? item.overview.slice(0, 220) : ""}...
                 </p>
-                
+
                 <div className="d-flex align-items-center gap-3">
-                  <span className="fs-5"><TiStarFullOutline className="text-warning" /> {item.vote_average?.toFixed(1)}</span>
-                  <button className="btn  d-flex align-items-center gap-2">
-                    <FaPlay /> Play
+                  <span className="fs-5">
+                    <TiStarFullOutline className="text-warning" size={20} />{" "}
+                    {item.vote_average?.toFixed(1)}
+                  </span>
+                  <button className="btn d-flex align-items-center gap-2">
+                    <FaPlay size={18} /> Play
                   </button>
                 </div>
               </div>
