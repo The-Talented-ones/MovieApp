@@ -1,5 +1,5 @@
 import React from "react";
-import "./MoviePageCard.css";
+import "./MoviepageCard.css";
 import { useNavigate } from "react-router-dom";
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500";
